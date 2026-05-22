@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I_SJS v1 - Мессенджер</title>
+    <!-- Подключаем внешний файл стилей CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ОКНО РЕГИСТРАЦИИ -->
+    <div id="registerWindow" class="auth-container">
+        <h2>I_SJS v1 - Регистрация</h2>
+        <div class="input-group">
+            <input type="text" id="regLogin" placeholder="Придумайте логин" required>
+            <input type="password" id="regPassword" placeholder="Придумайте пароль" required>
+        </div>
+        <button onclick="register()">Зарегистрироваться</button>
+        <div class="toggle-link" onclick="switchAuth(false)">Уже есть аккаунт? Войти</div>
+    </div>
+
+    <!-- ОКНО ВХОДА -->
+    <div id="loginWindow" class="auth-container" style="display: none;">
+        <h2>I_SJS v1 - Вход</h2>
+        <div class="input-group">
+            <input type="text" id="loginUser" placeholder="Ваш логин" required>
+            <input type="password" id="loginPassword" placeholder="Ваш пароль" required>
+        </div>
+        <button onclick="login()">Войти</button>
+        <div class="toggle-link" onclick="switchAuth(true)">Нет аккаунта? Регистрация</div>
+    </div>
+
+    <!-- ГЛАВНОЕ ОКНО МЕССЕНДЖЕРА -->
+    <div id="appWindow" class="app-container" style="display: none;">
+        
+        <!-- Левая боковая панель (Список пользователей) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span id="currentUserName">Вы: Гость</span>
+                <button class="logout-btn" onclick="logout()">Выйти</button>
+            </div>
+            <!-- Список, куда JS будет добавлять Избранное и зарегистрированных друзей -->
+            <div class="user-list" id="usersList"></div>
+        </aside>
+
+        <!-- Правая панель (Окно активного чата) -->
+        <main class="chat-area">
+            <div class="chat-header" id="chatTitle">Выберите, кому написать...</div>
+            
+            <!-- Контейнер для вывода сообщений -->
+            <div class="messages-container" id="messagesBox"></div>
+            
+            <!-- Панель ввода и отправки (скрыта, пока не выбран чат) -->
+            <div class="chat-input-area" id="inputArea" style="display: none;">
+                <input type="text" id="messageInput" placeholder="Введите сообщение..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Отправить</button>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Подключаем внешний файл логики JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
